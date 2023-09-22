@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.issue.state == 'open'
     steps:
+    - name: print body
+      env:
+        BODY: ${{ github.event.comment.body }}
+      run: echo "$BODY"
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
