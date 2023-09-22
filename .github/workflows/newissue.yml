@@ -12,15 +12,15 @@ jobs:
       - name: print body
         env:
           BODY: ${{ github.event.comment.body }}
-        run: echo "${{ github.event.comment.body }}"
+        run: echo "${{ github.event.issue.body }}"
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.issue.head_ref }}
       - name: Parse comment body
         run: |
-          id=$(echo "${{ github.event.comment.body }}" | awk 'NR==1')
-          title=$(echo "${{ github.event.comment.body }}" | awk 'NR==3')
+          id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
+          title=$(echo "${{ github.event.issue.body }}" | awk 'NR==3')
           echo "ID=$id" >> $GITHUB_ENV
           echo "TITLE=$title" >> $GITHUB_ENV
       - name: Update mappings.json
