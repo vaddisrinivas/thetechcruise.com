@@ -21,6 +21,7 @@ jobs:
           echo "TITLE=$title" >> $GITHUB_ENV
       - name: Update mappings.json
         run: |
+          env
           jq --arg id "$ID" --arg title "$TITLE" '. + {($id): $title}' mappings.json > temp.json
           mv temp.json mappings.json
       - name: Update sitemap.txt
