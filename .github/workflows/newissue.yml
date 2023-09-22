@@ -41,14 +41,8 @@ jobs:
           git add .
           git commit -m "Update files from issue comment"
           git push
-      - name: Reply to issue comment
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{secrets.TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Files updated successfully!'
-            })
+      - name: Close issue with GitHub CLI
+        run: |
+          gh issue close --comment "Auto-closing issue" "${{ github.event.issue.number }}"
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
