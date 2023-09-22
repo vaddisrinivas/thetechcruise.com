@@ -12,7 +12,7 @@ jobs:
       - name: print body
         env:
           BODY: ${{ github.event.comment.body }}
-        run: echo ${{ github.event.comment.body }}
+        run: echo "${{ github.event.comment.body }}"
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
