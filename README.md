@@ -1,3 +1,5 @@
+[![Update files from issue comment](https://github.com/vaddisrinivas/thetechcruise.com/actions/workflows/newissue.yml/badge.svg)](https://github.com/vaddisrinivas/thetechcruise.com/actions/workflows/newissue.yml)
+
 https://thetechcruise.com/srinivas-vaddi
 
 https://thetechcruise.com/sai-manasa-ivaturi
