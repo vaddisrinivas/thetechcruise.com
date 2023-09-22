@@ -1,8 +1,8 @@
 name: Update files from issue comment
 
 on:
-  issue_comment:
-    types: [created]
+  types:
+      - opened
 
 jobs:
   update-files:
