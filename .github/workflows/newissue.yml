@@ -1,0 +1,49 @@
+name: Update files from issue comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  update-files:
+    runs-on: ubuntu-latest
+    if: github.event.issue.state == 'open'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.issue.head_ref }}
+      - name: Parse comment body
+        run: |
+          id=$(echo "${{ github.event.comment.body }}" | awk 'NR==1')
+          title=$(echo "${{ github.event.comment.body }}" | awk 'NR==3')
+          echo "ID=$id" >> $GITHUB_ENV
+          echo "TITLE=$title" >> $GITHUB_ENV
+      - name: Update mappings.json
+        run: |
+          jq --arg id "$ID" --arg title "$TITLE" '. + {($id): $title}' mappings.json > temp.json
+          mv temp.json mappings.json
+      - name: Update sitemap.txt
+        run: |
+          echo "thetechcruise.com/$TITLE" >> sitemap.txt
+      - name: Update readme.md
+        run: |
+          echo "$ID : thetechcruise.com/$TITLE" >> readme.md
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'vaddisrinivas'
+          git config --global user.email 'vaddisrinivas170497@gmail.com'
+          git add .
+          git commit -m "Update files from issue comment"
+          git push
+      - name: Reply to issue comment
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Files updated successfully!'
+            })
