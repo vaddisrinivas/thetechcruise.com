@@ -51,3 +51,5 @@ https://thetechcruise.com/exploring-mongodb-7-0-with-mongodb-compass-a-comprehen
 https://thetechcruise.com/
 
 https://thetechcruise.com/test-react-series
+
+https://thetechcruise.com/test
