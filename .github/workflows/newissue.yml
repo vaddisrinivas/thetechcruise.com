@@ -31,7 +31,6 @@ jobs:
       
       - name: Update README.md
         run: |
-          echo '' >> README.md
           echo "https://thetechcruise.com/$TITLE" >> README.md
       - name: Commit and push changes
         run: |
