@@ -2,3 +2,4 @@ thetechcruise.com/test-react-series
 thetechcruise.com/test-react-series
 thetechcruise.com/test-react-series
 thetechcruise.com/design-principles-react
+thetechcruise.com/test-slug
