@@ -42,6 +42,6 @@ jobs:
           git push
       - name: Close issue with GitHub CLI
         run: |
-          gh issue close --comment "Auto-closing issue" "${{ github.event.issue.number }}"
+          gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$id \nhttps://thetechcruise.com/$title" "${{ github.event.issue.number }}"
         env:
           GH_TOKEN: ${{ secrets.TOKEN }}
