@@ -47,3 +47,5 @@ https://thetechcruise.com/exploring-mongodb-7-0-with-mongodb-compass-a-comprehen
 https://thetechcruise.com/exploring-mongodb-7-0-with-mongodb-compass-a-comprehensive-guide-part-6-using-compass-for-advanced-queries
 
 https://thetechcruise.com/exploring-mongodb-7-0-with-mongodb-compass-a-comprehensive-guide-part-7-using-compass-for-mongodb-7-0-features
+
+https://thetechcruise.com/
