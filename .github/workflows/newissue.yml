@@ -21,24 +21,15 @@ jobs:
         run: |
           id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
           title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2')
-          if [ -n "$title" ]; then
-            echo "ID=$id" >> $GITHUB_ENV
-            echo "TITLE=$title" >> $GITHUB_ENV
-          else
-            title=$(echo "${{ github.event.issue.body }}" | awk 'NR==3')
-            # sluggify line 3
-            title=$(echo "$title" | iconv -t ascii//TRANSLIT | sed -r s/ [^a-zA-Z0-9]+/-/g | sed -r s/^-+\\|-+$//g | tr A-Z a-z)
-            echo "ID=$id" >> $GITHUB_ENV
-            echo "TITLE=$title" >> $GITHUB_ENV
-          fi
-
+          echo "ID=$id" >> $GITHUB_ENV
+          echo "TITLE=$title" >> $GITHUB_ENV
       - name: Update mappings.json
         run: |
           env
           jq --arg id "$ID" --arg title "$TITLE" '. + {($id): $title}' mappings.json > temp.json
           mv temp.json mappings.json
       
-      - name: Update readme.md
+      - name: Update README.md
         run: |
           echo '' >> README.md
           echo "https://thetechcruise.com/$TITLE" >> README.md
