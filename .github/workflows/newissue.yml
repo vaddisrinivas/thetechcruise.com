@@ -37,13 +37,11 @@ jobs:
           env
           jq --arg id "$ID" --arg title "$TITLE" '. + {($id): $title}' mappings.json > temp.json
           mv temp.json mappings.json
-      - name: Update sitemap.txt
-        run: |
-          echo "thetechcruise.com/$TITLE" >> sitemap.txt
+      
       - name: Update readme.md
         run: |
           echo '' >> README.md
-          echo "thetechcruise.com/$TITLE" >> README.md
+          echo "https://thetechcruise.com/$TITLE" >> README.md
       - name: Commit and push changes
         run: |
           git config --global user.name 'vaddisrinivas'
