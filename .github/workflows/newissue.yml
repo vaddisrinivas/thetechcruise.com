@@ -21,8 +21,17 @@ jobs:
         run: |
           id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
           title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2')
-          echo "ID=$id" >> $GITHUB_ENV
-          echo "TITLE=$title" >> $GITHUB_ENV
+          if [ -n "$title" ]; then
+            echo "ID=$id" >> $GITHUB_ENV
+            echo "TITLE=$title" >> $GITHUB_ENV
+          else
+            title=$(echo "${{ github.event.issue.body }}" | awk 'NR==3')
+            # sluggify line 3
+            title=$(echo "$title" | iconv -t ascii//TRANSLIT | sed -r s/ [^a-zA-Z0-9]+/-/g | sed -r s/^-+\\|-+$//g | tr A-Z a-z)
+            echo "ID=$id" >> $GITHUB_ENV
+            echo "TITLE=$title" >> $GITHUB_ENV
+          fi
+
       - name: Update mappings.json
         run: |
           env
@@ -33,7 +42,8 @@ jobs:
           echo "thetechcruise.com/$TITLE" >> sitemap.txt
       - name: Update readme.md
         run: |
-          echo "$ID : thetechcruise.com/$TITLE" >> readme.md
+          echo '' >> README.md
+          echo "thetechcruise.com/$TITLE" >> README.md
       - name: Commit and push changes
         run: |
           git config --global user.name 'vaddisrinivas'
