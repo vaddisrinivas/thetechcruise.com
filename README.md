@@ -28,3 +28,4 @@ https://thetechcruise.com/test-react-series
 https://thetechcruise.com/test
 https://thetechcruise.com/58def5c1-7c66-4fa6-b652-5d1445e303cdopenapi-a-powerful-tool-for-designing-and-documenting-apis-part-4creatinganopenapiclientwithopenapigeneratorhttpsthetechcruisenotionsiteopenapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-58def5c17c664fa6b6525d1445e303cd
 https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4 : creating an openapi client with openapi generator
+https://thetechcruise.com/openapi a powerful tool for designing and documenting apis part 4 creating an openapi client with openapi generator
