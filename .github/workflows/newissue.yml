@@ -20,7 +20,7 @@ jobs:
       - name: Parse comment body
         run: |
           id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
-          title=$(echo "${{ github.event.issue.body }}" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+          title=$(echo "${{ github.event.issue.body }}" | tr '[:upper:]' '[:lower:]' | tr -cd '[:alnum:]-' | sed 's/-\+/-/g' | sed 's/^-//;s/-*$//')
           echo "ID=$id" >> $GITHUB_ENV
           echo "TITLE=$title" >> $GITHUB_ENV
       - name: Update mappings.json
