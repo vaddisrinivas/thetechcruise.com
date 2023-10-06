@@ -30,3 +30,4 @@ https://thetechcruise.com/58def5c1-7c66-4fa6-b652-5d1445e303cdopenapi-a-powerful
 https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4 : creating an openapi client with openapi generator
 https://thetechcruise.com/openapi a powerful tool for designing and documenting apis part 4 creating an openapi client with openapi generator
 https://thetechcruise.com/openapi a powerful tool for designing and documenting apis part 4 creating an openapi client with openapi generator
+https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-openapi-generator
