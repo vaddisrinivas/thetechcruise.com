@@ -29,3 +29,4 @@ https://thetechcruise.com/test
 https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-openapi-generator
 https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-1-introduction
 https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-2-a-foundations-of-concurrency-
+https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-2-b-processes-concurrency-and-parallelism
