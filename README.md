@@ -30,3 +30,4 @@ https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-
 https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-1-introduction
 https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-2-a-foundations-of-concurrency-
 https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-2-b-processes-concurrency-and-parallelism
+https://thetechcruise.com/setting-up-and-running-the-pomodoro-flask-application-
