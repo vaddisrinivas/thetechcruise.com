@@ -32,3 +32,4 @@ https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessi
 https://thetechcruise.com/a-deep-dive-into-concurrency-parallelism-multiprocessing-and-distributed-systems-part-2-b-processes-concurrency-and-parallelism
 https://thetechcruise.com/setting-up-and-running-the-pomodoro-flask-application-
 https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-openapi-generator
+https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-openapi-generator
