@@ -31,13 +31,14 @@ jobs:
       
       - name: Update README.md
         run: |
+          echo "BLOG_URL=https://thetechcruise.com/${TITLE}" >> $GITHUB_ENV
           echo "https://thetechcruise.com/$TITLE" >> README.md
       - name: Commit and push changes
         run: |
           git config --global user.name 'vaddisrinivas'
           git config --global user.email 'vaddisrinivas170497@gmail.com'
           git add .
-          git commit -m "Update files from issue comment"
+          git commit -m "CheckOut my new blog at $BLOG_URL"
           git push
       - name: Close issue with GitHub CLI
         run: |
