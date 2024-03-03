@@ -38,3 +38,4 @@ https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-
 https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-openapi-generator
 https://thetechcruise.com/openapi-a-powerful-tool-for-designing-and-documenting-apis-part-4-creating-an-openapi-client-with-openapi-generator
 https://thetechcruise.com/new-blog
+https://thetechcruise.com/zen-of-debugging-in-python
