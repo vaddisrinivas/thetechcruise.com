@@ -38,6 +38,7 @@ jobs:
           else
             echo "TITLE_ID=$slug" >> $GITHUB_ENV
           fi
+          echo $GITHUB_ENV
       - name: Update mappings.json
         run: |
           env
