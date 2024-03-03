@@ -20,7 +20,7 @@ jobs:
       - name: Parse comment body
         run: |
           id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
-          og_title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2
+          og_title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2')
           title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2 {gsub(/[^a-zA-Z0-9]+/, " "); gsub(/ +/, " "); print tolower($0); gsub(/ /, "-"); gsub(/^-+|-+$/, "");}'| tr ' ' '-' )
           slug=$(echo "${{ github.event.issue.body }}" | awk 'NR==4')
           tags_temp=$(echo "${{ github.event.issue.body }}" | awk 'NR==5')
