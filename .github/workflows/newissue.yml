@@ -20,6 +20,7 @@ jobs:
       - name: Parse comment body
         run: |
           id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
+          og_title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2
           title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2 {gsub(/[^a-zA-Z0-9]+/, " "); gsub(/ +/, " "); print tolower($0); gsub(/ /, "-"); gsub(/^-+|-+$/, "");}'| tr ' ' '-' )
           slug=$(echo "${{ github.event.issue.body }}" | awk 'NR==4')
           tags_temp=$(echo "${{ github.event.issue.body }}" | awk 'NR==5')
@@ -29,9 +30,11 @@ jobs:
 
           echo "ID=$id" >> $GITHUB_ENV
           echo "TITLE=$title" >> $GITHUB_ENV
+          echo "OG_TITLE=$og_title" >> $GITHUB_ENV
           echo "SLUG=$slug" >> $GITHUB_ENV
           echo "TAGS=$tags" >> $GITHUB_ENV
           echo "DESCRIPTION=$(echo "$description" | sed ':a;N;$!ba;s/\n/\\n/g')" >> $GITHUB_ENV
+          
           if [ -z "$slug" ]; then
             echo "TITLE_ID=$title" >> $GITHUB_ENV
           else
@@ -55,10 +58,10 @@ jobs:
           git config --global user.name 'vaddisrinivas'
           git config --global user.email 'vaddisrinivas170497@gmail.com'
           git add .
-          git commit -m "CheckOut my new blog on $TITLE" -m "$DESCRIPTION" -m "$TAGS" -m "$BLOG_URL"
+          git commit -m "Check out my new blog on $OG_TITLE" -m "$DESCRIPTION" -m "$TAGS" -m "$BLOG_URL"
           git push
       - name: Close issue with GitHub CLI
         run: |
-          gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$id \nhttps://thetechcruise.com/$TITLE" "${{ github.event.issue.number }}"
+          gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$ID \nhttps://thetechcruise.com/$TITLE" "${{ github.event.issue.number }}"
         env:
           GH_TOKEN: ${{ secrets.TOKEN }}
