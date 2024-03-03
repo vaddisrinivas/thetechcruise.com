@@ -60,7 +60,16 @@ jobs:
           git add .
           git commit -m "Check out my new blog on $OG_TITLE" -m "$DESCRIPTION" -m "$TAGS" -m "$BLOG_URL"
           git push
-          gh release create blog --notes "Check out my new blog on  $OG_TITLE \n  $DESCRIPTION \n $TAGS \n $BLOG_URL \n"
+          # Create the release notes file
+          cat << EOF > release-notes.txt
+          Check out my new blog on $OG_TITLE
+          $DESCRIPTION
+          $TAGS
+          $BLOG_URL
+          EOF
+          cat release-notes.txt
+          # Now, use the release-notes.txt file for the GitHub release
+          gh release create blog --notes-file release-notes.txt
       - name: Close issue with GitHub CLI
         run: |
           gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$ID \nhttps://thetechcruise.com/$TITLE" "${{ github.event.issue.number }}"
