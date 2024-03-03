@@ -40,11 +40,9 @@ jobs:
           else
             echo "TITLE_ID=$slug" >> $GITHUB_ENV
           fi
-          echo $GITHUB_ENV
           
       - name: Update mappings.json
         run: |
-          env
           jq --arg id "$ID" --arg title "$TITLE_ID" '. + {($id): $title}' mappings.json > temp.json
           mv temp.json mappings.json
       
@@ -70,6 +68,8 @@ jobs:
           cat release-notes.txt
           # Now, use the release-notes.txt file for the GitHub release
           gh release create blog --notes-file release-notes.txt
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
       - name: Close issue with GitHub CLI
         run: |
           gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$ID \nhttps://thetechcruise.com/$TITLE" "${{ github.event.issue.number }}"
