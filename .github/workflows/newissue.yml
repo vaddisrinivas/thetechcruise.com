@@ -21,24 +21,40 @@ jobs:
         run: |
           id=$(echo "${{ github.event.issue.body }}" | awk 'NR==1')
           title=$(echo "${{ github.event.issue.body }}" | awk 'NR==2 {gsub(/[^a-zA-Z0-9]+/, " "); gsub(/ +/, " "); print tolower($0); gsub(/ /, "-"); gsub(/^-+|-+$/, "");}'| tr ' ' '-' )
+          slug=$(echo "${{ github.event.issue.body }}" | awk 'NR==4')
+          tags_temp=$(echo "${{ github.event.issue.body }}" | awk 'NR==5')
+          description=$(echo "${{ github.event.issue.body }}" | awk 'NR>=6')
+
+          tags=$(echo "$tags_temp" | sed 's/, / #/g' | sed 's/^/#/')
+
+
           echo "ID=$id" >> $GITHUB_ENV
           echo "TITLE=$title" >> $GITHUB_ENV
+          echo "SLUG=$slug" >> $GITHUB_ENV
+          echo "TAGS=$tags" >> $GITHUB_ENV
+          echo "DESCRIPTION=$(echo "$description" | sed ':a;N;$!ba;s/\n/\\n/g')" >> $GITHUB_ENV
+          if [ -z "$slug" ]; then
+            echo "TITLE_ID=$title" >> $GITHUB_ENV
+          else
+            echo "TITLE_ID=$slug" >> $GITHUB_ENV
+          fi
       - name: Update mappings.json
         run: |
           env
-          jq --arg id "$ID" --arg title "$TITLE" '. + {($id): $title}' mappings.json > temp.json
+          jq --arg id "$ID" --arg title "$TITLE_ID" '. + {($id): $title}' mappings.json > temp.json
           mv temp.json mappings.json
       
       - name: Update README.md
         run: |
-          echo "BLOG_URL=https://thetechcruise.com/${TITLE}" >> $GITHUB_ENV
-          echo "https://thetechcruise.com/$TITLE" >> README.md
+          echo "BLOG_URL=https://thetechcruise.com/$TITLE_ID" >> $GITHUB_ENV
+          echo -e "\n$BLOG_URL" >> README.md
+
       - name: Commit and push changes
         run: |
           git config --global user.name 'vaddisrinivas'
           git config --global user.email 'vaddisrinivas170497@gmail.com'
           git add .
-          git commit -m "CheckOut my new blog at $BLOG_URL"
+          git commit -m "CheckOut my new blog on #$TITLE: $DESCRIPTION $TAGS $BLOG_URL"
           git push
       - name: Close issue with GitHub CLI
         run: |
