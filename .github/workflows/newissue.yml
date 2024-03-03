@@ -60,6 +60,7 @@ jobs:
           git add .
           git commit -m "Check out my new blog on $OG_TITLE" -m "$DESCRIPTION" -m "$TAGS" -m "$BLOG_URL"
           git push
+          gh release create blog --notes "Check out my new blog on  $OG_TITLE \n  $DESCRIPTION \n $TAGS \n $BLOG_URL \n"
       - name: Close issue with GitHub CLI
         run: |
           gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$ID \nhttps://thetechcruise.com/$TITLE" "${{ github.event.issue.number }}"
