@@ -25,8 +25,7 @@ jobs:
           tags_temp=$(echo "${{ github.event.issue.body }}" | awk 'NR==5')
           description=$(echo "${{ github.event.issue.body }}" | awk 'NR>=6')
 
-          tags=$(echo "$tags_temp" | sed 's/, / #/g' | sed 's/^/#/')
-
+          tags=$(echo "$tags_temp" | tr ',' '\n' | awk '{print "#" $0}' | tr '\n' ' ' | sed 's/ $//')
 
           echo "ID=$id" >> $GITHUB_ENV
           echo "TITLE=$title" >> $GITHUB_ENV
@@ -39,6 +38,7 @@ jobs:
             echo "TITLE_ID=$slug" >> $GITHUB_ENV
           fi
           echo $GITHUB_ENV
+          
       - name: Update mappings.json
         run: |
           env
@@ -55,7 +55,7 @@ jobs:
           git config --global user.name 'vaddisrinivas'
           git config --global user.email 'vaddisrinivas170497@gmail.com'
           git add .
-          git commit -m "CheckOut my new blog on $TITLE : $DESCRIPTION $TAGS $BLOG_URL"
+          git commit -m "CheckOut my new blog on $TITLE" -m "$DESCRIPTION" -m "$TAGS" -m "$BLOG_URL"
           git push
       - name: Close issue with GitHub CLI
         run: |
