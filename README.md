@@ -41,3 +41,4 @@ https://thetechcruise.com/new-blog
 https://thetechcruise.com/zen-of-debugging-in-python
 https://thetechcruise.com/new-trial
 https://thetechcruise.com/zen-of-debugging-in-python
+https://thetechcruise.com/zen-of-debugging-in-python
