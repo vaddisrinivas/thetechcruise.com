@@ -55,10 +55,10 @@ jobs:
           git config --global user.name 'vaddisrinivas'
           git config --global user.email 'vaddisrinivas170497@gmail.com'
           git add .
-          git commit -m "CheckOut my new blog on #$TITLE: $DESCRIPTION $TAGS $BLOG_URL"
+          git commit -m "CheckOut my new blog on $TITLE : $DESCRIPTION $TAGS $BLOG_URL"
           git push
       - name: Close issue with GitHub CLI
         run: |
-          gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$id \nhttps://thetechcruise.com/$title" "${{ github.event.issue.number }}"
+          gh issue close --comment "Auto-closing issue\n https://thetechcruise.com/$id \nhttps://thetechcruise.com/$TITLE" "${{ github.event.issue.number }}"
         env:
           GH_TOKEN: ${{ secrets.TOKEN }}
